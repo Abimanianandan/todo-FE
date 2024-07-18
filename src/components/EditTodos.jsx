@@ -1,25 +1,25 @@
-
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditTodos = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [editTodos, setEditTodos] = useState({
     title: "",
-    description: ""
+    description: "",
   });
- 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://todos-be-1mpn.onrender.com/api/todos/${id}`);
+        const response = await axios.get(
+          `https://todos-be-1mpn.onrender.com/api/todos/${id}`
+        );
         setEditTodos(response.data);
       } catch (error) {
         console.log(error);
-      } 
+      }
     };
 
     fetchData();
@@ -27,25 +27,29 @@ const EditTodos = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditTodos(prevData => ({ ...prevData, [name]: value }));
+    setEditTodos((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://todos-be-1mpn.onrender.com/api/todos/${id}`, editTodos);
+      await axios.put(
+        `https://todos-be-1mpn.onrender.com/api/todos/${id}`,
+        editTodos
+      );
       navigate("/");
     } catch (error) {
       console.log(error);
-    } 
+    }
   };
-
-  
 
   return (
     <div className="container">
       <div className="row g-3 justify-content-center align-items-center mt-5">
-        <form onSubmit={handleFormSubmit} className="d-flex gap-3 justify-content-center align-items-center">
+        <form
+          onSubmit={handleFormSubmit}
+          className="d-flex gap-3 justify-content-center align-items-center"
+        >
           <div className="col-auto">
             <input
               type="text"
@@ -80,5 +84,3 @@ const EditTodos = () => {
 };
 
 export default EditTodos;
-
-
