@@ -27,6 +27,7 @@ const DisplayTodos = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://todos-be-1mpn.onrender.com/api/todos/${id}`);
+      alert("Todo Deleted Successfully")
       setDeletedTodos((preData) => preData.filter((item) => item.id !== id));
     } catch (error) {
       console.log(error);
@@ -45,7 +46,7 @@ const DisplayTodos = () => {
         "https://todos-be-1mpn.onrender.com/api/todos/create",
         newTodo
       );
-      alert("Todo created successfully")
+      alert("Todo Created Successfully")
       setTodos(response.data.todos);
       setNewTodo({ title: "", description: "" });
       window.location.reload();

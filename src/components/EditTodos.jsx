@@ -37,6 +37,7 @@ const EditTodos = () => {
         `https://todos-be-1mpn.onrender.com/api/todos/${id}`,
         editTodos
       );
+      alert("Todo Updated Successfully")
       navigate("/");
     } catch (error) {
       console.log(error);
