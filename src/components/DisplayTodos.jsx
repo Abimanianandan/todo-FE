@@ -9,7 +9,6 @@ const DisplayTodos = () => {
     title: "",
     description: "",
   });
-  // const BaseUrl = "https://todos-be-yynr.onrender.com"
   useEffect(() => {
     fetchData();
   }, [deletedTodos]);
@@ -46,6 +45,7 @@ const DisplayTodos = () => {
         "https://todos-be-1mpn.onrender.com/api/todos/create",
         newTodo
       );
+      alert("Todo created successfully")
       setTodos(response.data.todos);
       setNewTodo({ title: "", description: "" });
       window.location.reload();
@@ -62,7 +62,7 @@ const DisplayTodos = () => {
             onSubmit={handleFormSubmit}
             className="d-flex gap-3 justify-content-center align-items-center"
           >
-            <div class="col-auto">
+            <div class="col-sm-auto">
               <input
                 type="text"
                 id="title"
@@ -74,7 +74,7 @@ const DisplayTodos = () => {
                 value={newTodo.title}
               />
             </div>
-            <div class="col-auto">
+            <div class="col-sm-auto">
               <input
                 type="text"
                 id="description"
