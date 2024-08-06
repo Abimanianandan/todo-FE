@@ -11,19 +11,18 @@ const EditTodos = () => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://todos-be-1mpn.onrender.com/api/todos/${id}`
-        );
-        setEditTodos(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchData();
-  }, [id]);
+  }, []);
+
+  const fetchData = async () =>{
+    try {
+      const response = await axios.get(`https://todos-be-1mpn.onrender.com/api/todos/${id}`)
+      setEditTodos(response.data.todo)
+    } catch (error) {
+      console.log(error.message);
+    }
+   
+  } 
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -46,6 +46,9 @@ const DisplayTodos = () => {
         "https://todos-be-1mpn.onrender.com/api/todos/create",
         newTodo
       );
+      if(newTodo.title === newTodo.title){
+        alert("title already exits")
+      }
       alert("Todo Created Successfully")
       setTodos(response.data.todos);
       setNewTodo({ title: "", description: "" });
