@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const DisplayTodos = () => {
   const [todos, setTodos] = useState([]);
   const [deletedTodos, setDeletedTodos] = useState([]);
+  const [error, setError] = useState("")
   const [newTodo, setNewTodo] = useState({
     title: "",
     description: "",
@@ -44,15 +45,16 @@ const DisplayTodos = () => {
         "https://todos-be-wjcd.onrender.com/api/todos/create",
         newTodo
       );
-      if(newTodo.title === newTodo.title){
-        alert("title already exits")
-      }
       alert("Todo Created Successfully")
       setTodos(response.data.todos);
       setNewTodo({ title: "", description: "" });
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.data) {
+         setError(error.response.data.message)
+      } else {
+        setError("Failed to create todo")
+      }
     }
   };
 
@@ -74,8 +76,8 @@ const DisplayTodos = () => {
                 required
                 onChange={handleChange}
                 value={newTodo.title}
-              />
-            </div>
+              /> 
+            </div> 
             <div class="col-sm-auto">
               <input
                 type="text"
@@ -92,8 +94,12 @@ const DisplayTodos = () => {
               <button className="btn btn-success" type="submit">
                 Add Todo
               </button>
-            </div>
+            </div> 
+            
+
           </form>
+          <span className="text-danger" style={{marginLeft:"600px"}}>{error}</span>
+
         </div>
         <hr />
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 ">
