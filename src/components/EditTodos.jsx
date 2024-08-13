@@ -16,7 +16,7 @@ const EditTodos = () => {
 
   const fetchData = async () =>{
     try {
-      const response = await axios.get(`https://todos-be-1mpn.onrender.com/api/todos/${id}`)
+      const response = await axios.get(`https://todos-be-wjcd.onrender.com/api/todos/${id}`)
       setEditTodos(response.data.todo)
     } catch (error) {
       console.log(error.message);
@@ -33,7 +33,7 @@ const EditTodos = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `https://todos-be-1mpn.onrender.com/api/todos/${id}`,
+        `https://todos-be-wjcd.onrender.com/api/todos/${id}`,
         editTodos
       );
       alert("Todo Updated Successfully")

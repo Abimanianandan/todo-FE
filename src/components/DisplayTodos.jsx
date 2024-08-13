@@ -15,9 +15,7 @@ const DisplayTodos = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "https://todos-be-1mpn.onrender.com/api/todos/allTodos"
-      );
+      const response = await axios.get("https://todos-be-wjcd.onrender.com/api/todos/allTodos");
       setTodos(response.data.todos);
     } catch (error) {
       console.log(error);
@@ -26,7 +24,7 @@ const DisplayTodos = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://todos-be-1mpn.onrender.com/api/todos/${id}`);
+      await axios.delete(`https://todos-be-wjcd.onrender.com/api/todos/${id}`);
       alert("Todo Deleted Successfully")
       setDeletedTodos((preData) => preData.filter((item) => item.id !== id));
     } catch (error) {
@@ -43,7 +41,7 @@ const DisplayTodos = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://todos-be-1mpn.onrender.com/api/todos/create",
+        "https://todos-be-wjcd.onrender.com/api/todos/create",
         newTodo
       );
       if(newTodo.title === newTodo.title){
